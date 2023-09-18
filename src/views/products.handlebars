@@ -1,0 +1,71 @@
+<div class="container-fluid" >
+<div class="row">
+<div class="col-6"> <h1>Carga de productos</h1>
+   <div class="col-10 align-self-start">
+      <label for="titlelabel" class="col-form-label">Nombre del producto</label>
+      <div>
+         <input type="text"  class="form-control" id="title">
+      </div>
+   </div>
+   <div class="col-10 align-self-start">
+      <label for="descripcionlabel" class="col-form-label">Descripcion</label>
+      <div>
+         <input type="text"  class="form-control" id="descripcion">
+      </div>
+   </div>
+   <div class="col-10 align-self-start">
+      <label for="categorialabel" class="col-form-label">Categoria</label>
+      <div>
+         <input type="text"  class="form-control" id="categoria">
+      </div>
+   </div>
+   <div class="col-10 align-self-start">
+      <label for="preciolabel" class="col-form-label">Precio</label>
+      <div>
+         <input type="number"  class="form-control" id="precio">
+      </div>
+   </div>
+   <div class="col-10 align-self-start">
+      <label for="stocklabel" class="col-form-label">Stock</label>
+      <div>
+         <input type="number"  class="form-control" id="stock">
+      </div>
+   </div>
+   <div class="col-10 align-self-start">
+      <label for="codigolabel" class="col-form-label">Codigo</label>
+      <div>
+         <input type="text"  class="form-control" id="codigo">
+      </div>
+   </div>
+   <div class="col align-self-start">
+      <button id="enviar" type="button" class="btn btn-outline-primary mt-2">Enviar</button>
+   </div>
+</div>
+<div class="col-6">
+   <h1>Lista de productos</h1>
+   <table class="table">
+      <thead>
+         <tr id="primera">
+            <th id="encabezado" scope="col"> Nombre</th>
+            <th scope="col"> Descripcion</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Categoria</th>
+         </tr>
+      </thead>
+      {{#each productos}}
+      <tbody>
+         <tr>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{price}}</td>
+            <td>{{code}} </td>
+            <td>{{stock}} </td>
+            <td>{{category}} </td>
+         </tr>
+         {{/each}}
+      </tbody>
+   </table>
+</div>
+<script src="../js{{js}}"></script>  
