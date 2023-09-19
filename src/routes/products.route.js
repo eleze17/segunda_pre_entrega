@@ -27,14 +27,50 @@ rutaProduct.get('/', async (req, res) => {
  const page = req.query.page || 1
  const query = req.query.query
  const sort = req.query.sort
+/* desc = -1
+asc = 1 */
+let sortpagination
+switch (sort) {
+  case 'desc':
+    sortpagination = {price:-1}
+    break
+  case 'asc':
+    sortpagination = {price:1}
+    break
+    default:
+      sortpagination = undefined
+}
 
- console.log(req.query.query)
+
+const filtroarray =  query.split('=',2)
+
+const filtroobject = Object.fromEntries([filtroarray])
+
+let prods
+
+ try {
+    
+    prods = await productModel.paginate(filtroobject,{limit,
+    page,
+    sort : sortpagination || ''
+    ,lean:true})
+
+   prods.status = 'Succes' 
+   prods.payload = prods.docs 
+
+ } catch (error) {
+  
+  prods.status = 'error'
+  prods.payload = error
+ } 
  
- const  prods = await productModel.paginate({},{limit,page})
+                                                          
 
+
+console.log(prods)
 
 res.render('products', {
-  productos: prods,
+  productos: prods.docs,
   title:'Productos',
   css: '/product.css',
   js: '/product.js'
