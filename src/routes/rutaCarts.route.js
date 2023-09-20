@@ -18,9 +18,9 @@ rutaCarts.get('/:id', async (req, res) => {
   const { id } = req.params
 
   try {
-      const cart = await cartModel.findById(id)
+      const cart = await cartModel.find({_id: id})
       if (cart)
-          res.status(200).send({ respuesta: 'OK', mensaje: cart })
+          res.status(200).send(cart)
       else
           res.status(404).send({ respuesta: 'Error en consultar Carrito', mensaje: 'Not Found' })
   } catch (error) {

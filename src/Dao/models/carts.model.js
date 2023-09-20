@@ -22,8 +22,10 @@ const cartSchema = new Schema({
     
 })
 
-cartSchema.pre('find',function(){
+cartSchema.pre('find',function(next){
    this.populate('products.id_prod') 
+   next()
 })
+
 
 export const cartModel = model('carts', cartSchema)
