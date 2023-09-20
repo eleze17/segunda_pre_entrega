@@ -9,20 +9,25 @@ const rutaCarts = Router()
 
 rutaCarts.get('/', async (req, res) => {
   // const carros = await manejador.getCarts()
-  const carros = await cartModel.find()
+  const carros = await cartModel.find().lean()
   res.send(carros)
 })
 
 rutaCarts.get('/:id', async (req, res) => {
   // const carro = await manejador.getCartsById(parseInt(req.params.id))
   const { id } = req.params
-
+  let listaProd
   try {
-      const cart = await cartModel.find({_id: id})
-      if (cart)
-          res.status(200).send(cart)
-      else
-          res.status(404).send({ respuesta: 'Error en consultar Carrito', mensaje: 'Not Found' })
+      const cart = await cartModel.find({_id: id}).lean()
+      if (cart){
+        listaProd = cart[0].products
+        console.log(listaProd)
+       res.render('carts', {
+        productos: listaProd,
+        title:'Carritos',
+        css: '/product.css',
+      })}
+      else {res.status(404).send({ respuesta: 'Error en consultar Carrito', mensaje: 'Not Found' })}
   } catch (error) {
       res.status(400).send({ respuesta: 'Error en consulta carrito', mensaje: error })
   }
