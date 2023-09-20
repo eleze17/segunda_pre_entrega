@@ -52,17 +52,23 @@
             <th scope="col">Codigo</th>
             <th scope="col">Stock</th>
             <th scope="col">Categoria</th>
-         </tr>
+            <th scope="col">Ir al producto</th>
+            <th scope="col">+</th>
+            </tr>
       </thead>
+        <tbody>
+    
       {{#each productos}}
-      <tbody>
          <tr>
             <td>{{title}}</td>
             <td>{{description}}</td>
             <td>{{price}}</td>
             <td>{{code}} </td>
-            <td>{{stock}} </td>
+            <td>{{stock}} </td>  
             <td>{{category}} </td>
+            <td> <button id="detail"><a href='./products/{{this._id}}'>Ir al producto</a></button></td>
+            <td><button class={{this._id}} name="addcart">Agregar al carrito</button></td>
+        
          </tr>
          {{/each}}
       </tbody>

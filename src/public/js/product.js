@@ -31,3 +31,26 @@ btnenviar.addEventListener('click',()=>{
 
 
 })
+
+
+const btnadd = document.getElementsByName('addcart')
+
+btnadd.forEach(element=>{
+
+    const id = element.className
+    const data = {id}
+    
+    element.addEventListener('click',()=>{
+    
+    fetch('/api/carts',{method: 'POST',
+    body: JSON.stringify(data),
+    headers: {'Content-type': 'application/json; charset=UTF-8'}
+    
+})
+.then(res=>res.json()  )
+    .then(resjson => {
+        alert(JSON.stringify(resjson))})
+
+})
+
+})

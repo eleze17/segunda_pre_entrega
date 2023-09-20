@@ -40,12 +40,13 @@ switch (sort) {
     default:
       sortpagination = undefined
 }
+let filtroobject
 
-
+if(query){
 const filtroarray =  query.split('=',2)
 
-const filtroobject = Object.fromEntries([filtroarray])
-
+ filtroobject = Object.fromEntries([filtroarray])
+}
 let prods
 
  try {
