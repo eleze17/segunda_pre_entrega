@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose'
 
 const userSchema = new Schema({
     nombre: {
@@ -21,7 +21,11 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    rol: {
+        type: String,
+        default: 'user'
     }
 })
-//Parametro 1:Nombre coleccion - Parametro 2: Schema 
+
 export const userModel = model('users', userSchema)
